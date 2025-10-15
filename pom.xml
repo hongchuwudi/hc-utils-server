@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Maven模型版本，固定值 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父项目：继承Spring Boot的父POM，提供默认配置 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId> <!-- Spring Boot组织ID -->
+        <artifactId>spring-boot-starter-parent</artifactId> <!-- Spring Boot启动器父项目 -->
+        <version>3.5.6</version> <!-- Spring Boot版本 -->
+        <relativePath/> <!-- 不从本地路径查找，直接从仓库下载 -->
+    </parent>
+
+    <!-- 项目基本信息 -->
+    <groupId>com.hongchu</groupId> <!-- 组织或公司域名反写 -->
+    <artifactId>hc-utils</artifactId> <!-- 项目名称 -->
+    <version>0.0.1-SNAPSHOT</version> <!-- 版本号：SNAPSHOT表示开发版本 -->
+    <packaging>pom</packaging> <!-- 打包方式：pom表示这是一个多模块项目 -->
+    <name>hc-utils</name> <!-- 项目显示名称 -->
+    <description>hc-utils项目集</description> <!-- 项目描述 -->
+
+    <!-- 模块声明：列出所有子模块 -->
+    <modules>
+        <module>hc-common</module> <!-- 通用工具模块 -->
+        <module>hc-pojo</module> <!-- 实体类模块 -->
+        <module>hc-service</module>
+        <module>hc-proxy</module>
+        <module>hc-app</module> <!-- 业务服务模块 -->
+    </modules>
+
+    <!-- 属性定义：集中管理版本号和配置 -->
+    <properties>
+        <!-- Java版本配置 -->
+        <java.version>17</java.version> <!-- Java运行版本 -->
+        <maven.compiler.source>17</maven.compiler.source> <!-- 编译源码版本 -->
+        <maven.compiler.target>17</maven.compiler.target> <!-- 编译目标版本 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- 源码编码 -->
+
+        <!-- 第三方依赖版本管理 -->
+        <mysql.connector.version>8.0.33</mysql.connector.version> <!-- MySQL驱动版本 -->
+        <lombok.version>1.18.30</lombok.version>          <!-- Lombok工具版本 -->
+        <json.version>20231013</json.version>             <!-- JSON处理库版本 -->
+        <qrcode.version>3.5.1</qrcode.version>            <!-- 二维码生成模块 -->
+
+        <!-- 内部模块版本管理 -->
+        <hc-common.version>0.0.1-SNAPSHOT</hc-common.version> <!-- 通用模块版本 -->
+        <hc-pojo.version>0.0.1-SNAPSHOT</hc-pojo.version> <!-- 实体模块版本 -->
+        <hc-service.version>0.0.1-SNAPSHOT</hc-service.version> <!-- 服务模块版本 -->
+        <hc-proxy.version>0.0.1-SNAPSHOT</hc-proxy.version>     <!-- 代理模块版本 -->
+        <hc-app.version>0.0.1-SNAPSHOT</hc-app.version>     <!-- app集成模块版本 -->
+    </properties>
+
+    <!-- 依赖管理：统一管理所有依赖的版本，子模块引用时无需指定版本 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- ========== 内部模块依赖管理 ========== -->
+            <dependency>
+                <groupId>com.hongchu</groupId> <!-- 组织ID -->
+                <artifactId>hc-common</artifactId> <!-- 通用工具模块 -->
+                <version>${hc-common.version}</version> <!-- 使用属性中定义的版本 -->
+            </dependency>
+            <dependency>
+                <groupId>com.hongchu</groupId>
+                <artifactId>hc-pojo</artifactId> <!-- 实体类模块 -->
+                <version>${hc-pojo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hongchu</groupId>
+                <artifactId>hc-service</artifactId> <!-- 业务服务模块 -->
+                <version>${hc-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hongchu</groupId>
+                <artifactId>hc-proxy</artifactId> <!-- 代理模块 -->
+                <version>${hc-proxy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hongchu</groupId>
+                <artifactId>hc-app</artifactId> <!-- 代理模块 -->
+                <version>${hc-app.version}</version>
+            </dependency>
+
+            <!-- ========== 第三方依赖版本管理 ========== -->
+            <!-- 数据库相关 -->
+            <dependency>
+                <groupId>com.mysql</groupId> <!-- MySQL组织 -->
+                <artifactId>mysql-connector-j</artifactId> <!-- MySQL JDBC驱动 -->
+                <version>${mysql.connector.version}</version> <!-- 版本号 -->
+                <scope>runtime</scope> <!-- 作用域：运行时需要 -->
+            </dependency>
+
+            <!-- 开发工具 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId> <!-- Lombok组织 -->
+                <artifactId>lombok</artifactId> <!-- 代码生成工具 -->
+                <version>${lombok.version}</version> <!-- 版本号 -->
+                <optional>true</optional> <!-- 可选依赖，不会传递 -->
+            </dependency>
+
+            <!-- 工具库 -->
+            <dependency>
+                <groupId>org.json</groupId> <!-- JSON组织 -->
+                <artifactId>json</artifactId> <!-- JSON处理库 -->
+                <version>${json.version}</version> <!-- 版本号 -->
+            </dependency>
+
+            <!-- ========== POJO模块相关依赖管理 ========== -->
+            <!-- 数据验证 -->
+            <dependency>
+                <groupId>jakarta.validation</groupId> <!-- Jakarta验证API -->
+                <artifactId>jakarta.validation-api</artifactId> <!-- 验证标准接口 -->
+                <version>3.0.2</version> <!-- 版本号 -->
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId> <!-- Hibernate验证实现 -->
+                <artifactId>hibernate-validator</artifactId> <!-- 验证具体实现 -->
+                <version>8.0.1.Final</version> <!-- 版本号 -->
+            </dependency>
+
+            <!-- JSON处理 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId> <!-- Jackson核心 -->
+                <artifactId>jackson-annotations</artifactId> <!-- JSON注解 -->
+                <version>2.17.0</version> <!-- 版本号 -->
+            </dependency>
+
+
+            <!-- MyBatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId> <!-- MyBatis Plus -->
+                <artifactId>mybatis-plus-annotation</artifactId> <!-- MyBatis注解 -->
+                <version>3.5.5</version> <!-- 版本号 -->
+            </dependency>
+
+
+            <!-- 二维码生成 -->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${qrcode.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${qrcode.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 构建配置 -->
+    <build>
+        <!-- 插件管理：统一管理插件版本 -->
+        <pluginManagement>
+            <plugins>
+                <!-- Maven编译插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId> <!-- Maven官方插件 -->
+                    <artifactId>maven-compiler-plugin</artifactId> <!-- 编译插件 -->
+                    <version>3.11.0</version> <!-- 插件版本 -->
+                    <configuration>
+                        <source>17</source> <!-- 源码兼容版本 -->
+                        <target>17</target> <!-- 目标字节码版本 -->
+                        <!-- 注解处理器路径 -->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version> <!-- Lombok注解处理器 -->
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+
+                <!-- Spring Boot Maven插件 -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>         <!-- Spring Boot组织 -->
+                    <artifactId>spring-boot-maven-plugin</artifactId>   <!-- Spring Boot打包插件 -->
+                    <version>3.5.6</version>                            <!-- 与Spring Boot版本一致 -->
+                    <configuration>
+                        <!-- 排除不打进包的依赖 -->
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>         <!-- 排除Lombok，因为只是编译时需要 -->
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

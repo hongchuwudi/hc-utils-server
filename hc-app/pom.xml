@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.hongchu</groupId>
+        <artifactId>hc-utils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>hc-app</artifactId>
+    <name>hc-app</name>
+    <description>应用启动模块 - 唯一入口</description>
+
+    <dependencies>
+        <!-- 依赖所有业务模块 -->
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-proxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-pojo</artifactId>
+        </dependency>
+
+        <!-- Web Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 添加参数验证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

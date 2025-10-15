@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Maven模型版本，固定值 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承父项目 -->
+    <parent>
+        <groupId>com.hongchu</groupId>
+        <artifactId>hc-utils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- 子模块信息 -->
+    <artifactId>hc-pojo</artifactId> <!-- 实体类模块标识 -->
+    <packaging>jar</packaging> <!-- 打包方式：jar -->
+    <name>hc-pojo</name> <!-- 模块名称 -->
+    <description>数据模型模块，包含DTO、VO、POJO等</description> <!-- 模块描述 -->
+
+    <!-- 依赖声明 -->
+    <dependencies>
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-pojo</artifactId>
+        </dependency>
+
+        <!-- Lombok：自动生成getter/setter/toString等 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope> <!-- 提供期依赖 -->
+        </dependency>
+
+        <!-- 数据验证 -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId> <!-- 验证API -->
+        </dependency>
+
+        <!-- JSON序列化注解 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId> <!-- JSON注解 -->
+        </dependency>
+        <!-- json依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+
+        <!-- 二维码生成 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+    </dependencies>
+</project>

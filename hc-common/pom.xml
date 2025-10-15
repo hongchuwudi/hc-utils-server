@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Maven模型版本，固定值 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承父项目 -->
+    <parent>
+        <groupId>com.hongchu</groupId>
+        <artifactId>hc-utils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- 子模块信息 -->
+    <artifactId>hc-common</artifactId> <!-- 通用模块标识 -->
+    <packaging>jar</packaging> <!-- 打包方式：jar -->
+    <name>hc-common</name> <!-- 模块名称 -->
+    <description>通用工具模块，包含工具类、常量、配置等</description> <!-- 模块描述 -->
+
+    <!-- 依赖声明 -->
+    <dependencies>
+        <!-- Spring Boot基础支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId> <!-- 核心启动器 -->
+        </dependency>
+
+        <!-- 开发工具 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId> <!-- 代码简化工具 -->
+            <optional>true</optional> <!-- 可选依赖 -->
+        </dependency>
+
+        <!-- JSON处理 -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId> <!-- JSON处理库 -->
+        </dependency>
+
+        <!-- 二维码生成 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+
+        <!-- 测试依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId> <!-- 测试启动器 -->
+            <scope>test</scope> <!-- 测试作用域 -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,39 @@
+# 通用构建输出
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.temp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE配置（按需选择，建议提交团队共享的IDE配置）
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+# 应用配置（包含敏感信息的配置文件）
+application-*.yml
+*.properties
+
+# 其他
+.mvn/wrapper/maven-wrapper.jar
+HELP.md
+
+# 部分测试
+kkmhtest/
+bilibilitest/

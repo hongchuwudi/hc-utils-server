@@ -1,0 +1,18 @@
+# spring 配置
+spring:
+  # 环境配置
+  profiles:
+    active: dev # 默认开发环境
+    include: proApiUrl # 引入 proApiUrl 配置
+  # json 配置
+  jackson:
+    property-naming-strategy: SNAKE_CASE # 默认驼峰转下划线
+
+# 服务器配置
+server:
+  port: 16666 # 端口
+
+# 应用配置
+app:
+  name: hc-utils # 应用名称
+  version: 1.0.0 # 应用版本
