@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.bilibili;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.common.result.Result;
 import com.hongchu.pojo.proxy.bilibili.BilibiliPassportLoginRes;
 import com.hongchu.pojo.proxy.bilibili.BilibiliQrcodeImage;
@@ -31,6 +32,13 @@ public class BilibiliPassportLoginController {
      * @return 登录页面 + qrcodeKey
      */
     @RequestMapping("/passport/login")
+    @ApiCallLogAnnotation(
+            apiName = "web端扫码登录-申请二维码",
+            description = "web端扫码登录-申请二维码",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public BilibiliPassportLoginRes getQrcode() {
         log.info("web端扫码登录-申请二维码...");
         return bilibiliPassportLoginService.getWebLoginQrcode();
@@ -41,6 +49,13 @@ public class BilibiliPassportLoginController {
      * @return 二维码图片 + qrcodeKey
      */
     @RequestMapping("/passport/login/only")
+    @ApiCallLogAnnotation(
+            apiName = "web端扫码登录-获取二维码图片",
+            description = "web端扫码登录-获取二维码图片",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<BilibiliQrcodeImage> getQrcodeImage() {
         log.info("web端扫码登录-获取二维码图片...");
         BilibiliQrcodeImage BQrcodeI = bilibiliPassportLoginService.extractQRCodeFromPage();
@@ -53,6 +68,13 @@ public class BilibiliPassportLoginController {
      * @return 登录状态
      */
     @RequestMapping("/passport/login/status")
+    @ApiCallLogAnnotation(
+            apiName = "web端扫码登录-获取登录状态",
+            description = "web端扫码登录-获取登录状态",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<BilibiliQrcodePollRes> getLoginStatus(@RequestParam("qrcode_key") String qrcodeKey) {
         log.info("web端扫码登录-获取登录状态,qrcodeKey:{}", qrcodeKey);
         return bilibiliPassportLoginService.getWebLoginQrcodeStatus(qrcodeKey);

@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.bilibili;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.pojo.proxy.bilibili.search.BilibiliSearchRequest;
 import com.hongchu.proxy.service.BilibiliSearchService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,13 @@ public class BilibiliSearchController {
      * 综合搜索
      */
     @GetMapping("/search/all")
+    @ApiCallLogAnnotation(
+            apiName = "哔哩哔哩-综合搜索",
+            description = "哔哩哔哩-综合搜索视频内容,用户,歌曲....",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<BilibiliSearchResponse> searchAll(
             @RequestParam String keyword,
             @RequestParam(defaultValue = "1") Integer page,
@@ -44,6 +52,13 @@ public class BilibiliSearchController {
      * 视频搜索
      */
     @GetMapping("/search/video")
+    @ApiCallLogAnnotation(
+            apiName = "哔哩哔哩-视频搜索",
+            description = "哔哩哔哩-搜索视频内容",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<BilibiliSearchResponse> searchVideo(
             @RequestParam String keyword,
             @RequestParam(defaultValue = "1") Integer page,
@@ -70,6 +85,13 @@ public class BilibiliSearchController {
      * 用户搜索
      */
     @GetMapping("/search/user")
+    @ApiCallLogAnnotation(
+            apiName = "哔哩哔哩-用户搜索",
+            description = "哔哩哔哩-搜索用户内容",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<BilibiliSearchResponse> searchUser(
             @RequestParam String keyword,
             @RequestParam(defaultValue = "1") Integer page,

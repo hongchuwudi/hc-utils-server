@@ -50,6 +50,12 @@
             <artifactId>tomcat-embed-core</artifactId>
         </dependency>
 
+        <!-- 添加 AOP 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- 二维码生成 -->
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -67,5 +73,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
+        <!-- MyBatis-Plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

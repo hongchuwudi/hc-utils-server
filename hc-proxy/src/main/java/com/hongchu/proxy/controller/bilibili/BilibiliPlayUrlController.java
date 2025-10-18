@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.bilibili;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.common.result.Result;
 import com.hongchu.pojo.proxy.bilibili.BilibiliPlayUrlInfo;
 import com.hongchu.pojo.proxy.bilibili.PlayUrlRequest;
@@ -32,6 +33,13 @@ public class BilibiliPlayUrlController {
      * @param sessData 用户身份
      */
     @GetMapping("/playurl")
+    @ApiCallLogAnnotation(
+            apiName = "哔哩哔哩-获取视频流地址",
+            description = "哔哩哔哩-获取视频流地址",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<BilibiliPlayUrlInfo> getPlayUrlProxy(
             @Valid PlayUrlRequest request,
             @RequestHeader("SESSDATA") String sessData) {
@@ -57,6 +65,13 @@ public class BilibiliPlayUrlController {
      * @param sessData 用户身份
      */
     @GetMapping("/playurl/quick/{bvid}/{cid}")
+    @ApiCallLogAnnotation(
+            apiName = "哔哩哔哩-获取视频流地址-快速版本",
+            description = "哔哩哔哩-获取视频流地址-快速版本",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<BilibiliPlayUrlInfo> getPlayUrlQuick(
             @PathVariable String bvid,
             @PathVariable Long cid,

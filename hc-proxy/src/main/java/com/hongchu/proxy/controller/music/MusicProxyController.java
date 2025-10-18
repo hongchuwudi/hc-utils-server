@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.music;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.common.result.Result;
 import com.hongchu.pojo.proxy.music.UnifiedSearchResponse;
 import com.hongchu.pojo.proxy.music.UnifiedDetailResponse;
@@ -30,6 +31,13 @@ public class MusicProxyController {
      * @return 搜索结果
      */
     @GetMapping("/search")
+    @ApiCallLogAnnotation(
+            apiName = "音乐代理-统一搜索",
+            description = "统一搜索音乐接口,支持多个平台搜索,默认为QQ音乐",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<UnifiedSearchResponse> searchMusic(
             @RequestParam String songName,
             @RequestParam(defaultValue = "qq") String source) {
@@ -52,6 +60,13 @@ public class MusicProxyController {
      * @return 音乐详情
      */
     @GetMapping("/detail")
+    @ApiCallLogAnnotation(
+            apiName = "音乐代理-统一获取音乐详情",
+            description = "统一获取音乐详情接口,支持多个平台获取,默认为QQ音乐",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<UnifiedDetailResponse> getMusicDetail(
             @RequestParam String songName,
             @RequestParam(defaultValue = "qq") String source,

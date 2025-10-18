@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.bilibili;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.common.result.Result;
 import com.hongchu.pojo.proxy.bilibili.BilibiliVideoInfo;
 import com.hongchu.proxy.service.impl.bilibili.BilibiliProxyGetVideoInfoServiceImpl;
@@ -28,6 +29,13 @@ public class BilibiliProxyGetVideoInfoController {
      * @param bvid 视频ID
      */
     @GetMapping("/video/{bvid}")
+    @ApiCallLogAnnotation(
+            apiName = "获取视频信息-同步接口",
+            description = "获取视频信息-同步接口",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Result<BilibiliVideoInfo> getVideoInfo(@PathVariable String bvid) {
         log.info("代理请求B站视频信息, bvid: {}", bvid);
         try {
@@ -45,6 +53,13 @@ public class BilibiliProxyGetVideoInfoController {
      * @param bvid 视频ID
      */
     @GetMapping("/video/async/{bvid}")
+    @ApiCallLogAnnotation(
+            apiName = "获取视频信息-非阻塞接口",
+            description = "获取视频信息-非阻塞接口",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<Result<BilibiliVideoInfo>> getVideoInfoAsync(@PathVariable String bvid) {
         log.info("非阻塞方式代理请求B站视频信息, bvid: {}", bvid);
 
@@ -62,6 +77,13 @@ public class BilibiliProxyGetVideoInfoController {
      * @param bvid 视频ID
      */
     @GetMapping("/video/reactive/{bvid}")
+    @ApiCallLogAnnotation(
+            apiName = "获取视频信息-直接返回Mono",
+            description = "获取视频信息-直接返回Mono",
+            logRequest = true,
+            logResponse = false,
+            logException = true
+    )
     public Mono<BilibiliVideoInfo> getVideoInfoReactive(@PathVariable String bvid) {
         log.info("响应式获取B站视频信息, bvid: {}", bvid);
         return bilibiliProxyService.getVideoInfoByBvidAsync(bvid);

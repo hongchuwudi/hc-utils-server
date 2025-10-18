@@ -1,5 +1,6 @@
 package com.hongchu.proxy.controller.wallpaper;
 
+import com.hongchu.common.annotation.ApiCallLogAnnotation;
 import com.hongchu.common.result.Result;
 import com.hongchu.pojo.proxy.wallpaper.JinShanWallpaper;
 import com.hongchu.proxy.service.WallpaperProxyService;
@@ -39,6 +40,13 @@ public class WallpaperProxyController {
      * @return 壁纸列表
      */
     @GetMapping("/jinShan")
+    @ApiCallLogAnnotation(
+            apiName = "壁纸代理-金山毒霸壁纸",
+            description = "获取金山毒霸壁纸接口,支持PC和安卓平台,默认为PC平台,默认为第一页,默认为30条数据",
+            logRequest = true,
+            logResponse = true,
+            logException = true
+    )
     public Result<List<JinShanWallpaper>> getJinShanWallpaper(
             @RequestParam @NotBlank String msg,
             @RequestParam(defaultValue = "pc") @Pattern(regexp = "pc|android") String type,

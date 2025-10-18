@@ -8,6 +8,7 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE # 默认驼峰转下划线
 
+
 # 服务器配置
 server:
   port: 16666 # 端口
@@ -16,3 +17,9 @@ server:
 app:
   name: hc-utils # 应用名称
   version: 1.0.0 # 应用版本
+
+# mybatis-plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId> <!-- Spring Boot组织ID -->
         <artifactId>spring-boot-starter-parent</artifactId> <!-- Spring Boot启动器父项目 -->
-        <version>3.5.6</version> <!-- Spring Boot版本 -->
+        <version>3.2.8</version> <!-- Spring Boot版本 -->
         <relativePath/> <!-- 不从本地路径查找，直接从仓库下载 -->
     </parent>
 
@@ -42,6 +42,8 @@
         <lombok.version>1.18.30</lombok.version>          <!-- Lombok工具版本 -->
         <json.version>20231013</json.version>             <!-- JSON处理库版本 -->
         <qrcode.version>3.5.1</qrcode.version>            <!-- 二维码生成模块 -->
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mybatis.version>3.0.4</mybatis.version>
 
         <!-- 内部模块版本管理 -->
         <hc-common.version>0.0.1-SNAPSHOT</hc-common.version> <!-- 通用模块版本 -->
@@ -105,6 +107,24 @@
                 <version>${json.version}</version> <!-- 版本号 -->
             </dependency>
 
+            <!-- MyBatis  -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!-- MyBatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId> <!-- MyBatis Plus -->
+                <artifactId>mybatis-plus-annotation</artifactId> <!-- MyBatis注解 -->
+                <version>3.5.5</version> <!-- 版本号 -->
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
             <!-- ========== POJO模块相关依赖管理 ========== -->
             <!-- 数据验证 -->
             <dependency>
@@ -126,14 +146,6 @@
             </dependency>
 
 
-            <!-- MyBatis Plus -->
-            <dependency>
-                <groupId>com.baomidou</groupId> <!-- MyBatis Plus -->
-                <artifactId>mybatis-plus-annotation</artifactId> <!-- MyBatis注解 -->
-                <version>3.5.5</version> <!-- 版本号 -->
-            </dependency>
-
-
             <!-- 二维码生成 -->
             <dependency>
                 <groupId>com.google.zxing</groupId>
@@ -145,7 +157,6 @@
                 <artifactId>javase</artifactId>
                 <version>${qrcode.version}</version>
             </dependency>
-
 
         </dependencies>
     </dependencyManagement>
