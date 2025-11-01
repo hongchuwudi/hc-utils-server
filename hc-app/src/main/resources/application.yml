@@ -1,25 +1,42 @@
-# spring 配置
 spring:
-  # 环境配置
+  application:
+    name: hc-utils
   profiles:
-    active: dev # 默认开发环境
-    include: proApiUrl # 引入 proApiUrl 配置
-  # json 配置
+    active: dev
+    include: proApiUrl
   jackson:
-    property-naming-strategy: SNAKE_CASE # 默认驼峰转下划线
+    property-naming-strategy: SNAKE_CASE
+  sql:
+    init:
+      mode: never
+      dependency:
+        enabled: false
 
-
-# 服务器配置
 server:
-  port: 16666 # 端口
+  port: 16666
 
-# 应用配置
 app:
-  name: hc-utils # 应用名称
-  version: 1.0.0 # 应用版本
+  name: hc-utils
+  version: 1.0.0
+  proxy:
+    timeout: 5000
+    max-connections: 500
+  debug: false
+  cache-enabled: false
 
-# mybatis-plus 配置
+# MyBatis-Plus 公共配置 - 不指定log-impl，让各环境自己配置
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.hongchu.pojo.entity
+  global-config:
+    db-config:
+      id-type: auto
+      update-strategy: not_null
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
   configuration:
     map-underscore-to-camel-case: true
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true

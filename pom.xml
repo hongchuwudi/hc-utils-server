@@ -39,18 +39,20 @@
 
         <!-- 第三方依赖版本管理 -->
         <mysql.connector.version>8.0.33</mysql.connector.version> <!-- MySQL驱动版本 -->
-        <lombok.version>1.18.30</lombok.version>          <!-- Lombok工具版本 -->
-        <json.version>20231013</json.version>             <!-- JSON处理库版本 -->
-        <qrcode.version>3.5.1</qrcode.version>            <!-- 二维码生成模块 -->
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <mybatis.version>3.0.4</mybatis.version>
+        <lombok.version>1.18.30</lombok.version>                  <!-- Lombok工具版本 -->
+        <json.version>20231013</json.version>                     <!-- JSON处理库版本 -->
+        <qrcode.version>3.5.1</qrcode.version>                    <!-- 二维码生成模块 -->
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>        <!-- MyBatis-Plus版本 -->
+        <mybatis.version>3.0.4</mybatis.version>                  <!-- MyBatis版本 -->
+        <pageHelper.v>2.1.0</pageHelper.v>                        <!-- MyBatis分页插件版本 -->
+        <jjwt.version>0.9.1</jjwt.version>                        <!-- JWT工具版本 -->
 
         <!-- 内部模块版本管理 -->
-        <hc-common.version>0.0.1-SNAPSHOT</hc-common.version> <!-- 通用模块版本 -->
-        <hc-pojo.version>0.0.1-SNAPSHOT</hc-pojo.version> <!-- 实体模块版本 -->
+        <hc-common.version>0.0.1-SNAPSHOT</hc-common.version>   <!-- 通用模块版本 -->
+        <hc-pojo.version>0.0.1-SNAPSHOT</hc-pojo.version>       <!-- 实体模块版本 -->
         <hc-service.version>0.0.1-SNAPSHOT</hc-service.version> <!-- 服务模块版本 -->
         <hc-proxy.version>0.0.1-SNAPSHOT</hc-proxy.version>     <!-- 代理模块版本 -->
-        <hc-app.version>0.0.1-SNAPSHOT</hc-app.version>     <!-- app集成模块版本 -->
+        <hc-app.version>0.0.1-SNAPSHOT</hc-app.version>         <!-- app集成模块版本 -->
     </properties>
 
     <!-- 依赖管理：统一管理所有依赖的版本，子模块引用时无需指定版本 -->
@@ -83,30 +85,36 @@
                 <version>${hc-app.version}</version>
             </dependency>
 
-            <!-- ========== 第三方依赖版本管理 ========== -->
-            <!-- 数据库相关 -->
+            <!-- ========== spring依赖管理 ========== -->
+            <!-- Spring security依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId> <!-- Spring Boot组织ID -->
+                <artifactId>spring-boot-starter-parent</artifactId> <!-- Spring Boot启动器父项目 -->
+                <version>3.2.8</version> <!-- Spring Boot版本 -->
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-security</artifactId>-->
+<!--            </dependency>-->
+            <!-- Spring Boot 3.x 邮件依赖-springboot内置了不需要配置 -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-mail</artifactId>-->
+<!--            </dependency>-->
+            <!-- Spring Boot 3.x 测试 -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-test</artifactId>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+
+            <!-- ============ 数据库相关 ============ -->
             <dependency>
                 <groupId>com.mysql</groupId> <!-- MySQL组织 -->
                 <artifactId>mysql-connector-j</artifactId> <!-- MySQL JDBC驱动 -->
                 <version>${mysql.connector.version}</version> <!-- 版本号 -->
                 <scope>runtime</scope> <!-- 作用域：运行时需要 -->
             </dependency>
-
-            <!-- 开发工具 -->
-            <dependency>
-                <groupId>org.projectlombok</groupId> <!-- Lombok组织 -->
-                <artifactId>lombok</artifactId> <!-- 代码生成工具 -->
-                <version>${lombok.version}</version> <!-- 版本号 -->
-                <optional>true</optional> <!-- 可选依赖，不会传递 -->
-            </dependency>
-
-            <!-- 工具库 -->
-            <dependency>
-                <groupId>org.json</groupId> <!-- JSON组织 -->
-                <artifactId>json</artifactId> <!-- JSON处理库 -->
-                <version>${json.version}</version> <!-- 版本号 -->
-            </dependency>
-
             <!-- MyBatis  -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -119,13 +127,33 @@
                 <artifactId>mybatis-plus-annotation</artifactId> <!-- MyBatis注解 -->
                 <version>3.5.5</version> <!-- 版本号 -->
             </dependency>
+            <!-- MyBatis Plus启动器 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
-            <!-- ========== POJO模块相关依赖管理 ========== -->
+            <!-- ============ 其他第三方 ============ -->
+            <!-- lombok开发工具包 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId> <!-- Lombok组织 -->
+                <artifactId>lombok</artifactId> <!-- 代码生成工具 -->
+                <version>${lombok.version}</version> <!-- 版本号 -->
+                <optional>true</optional> <!-- 可选依赖，不会传递 -->
+            </dependency>
+            <!-- json工具库 -->
+            <dependency>
+                <groupId>org.json</groupId>         <!-- JSON组织 -->
+                <artifactId>json</artifactId>       <!-- JSON处理库 -->
+                <version>${json.version}</version>  <!-- 版本号 -->
+            </dependency>
+            <!-- 分页插件PageHelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pageHelper.v}</version>
+            </dependency>
             <!-- 数据验证 -->
             <dependency>
                 <groupId>jakarta.validation</groupId> <!-- Jakarta验证API -->
@@ -137,15 +165,18 @@
                 <artifactId>hibernate-validator</artifactId> <!-- 验证具体实现 -->
                 <version>8.0.1.Final</version> <!-- 版本号 -->
             </dependency>
-
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
             <!-- JSON处理 -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId> <!-- Jackson核心 -->
                 <artifactId>jackson-annotations</artifactId> <!-- JSON注解 -->
                 <version>2.17.0</version> <!-- 版本号 -->
             </dependency>
-
-
             <!-- 二维码生成 -->
             <dependency>
                 <groupId>com.google.zxing</groupId>
@@ -157,7 +188,6 @@
                 <artifactId>javase</artifactId>
                 <version>${qrcode.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

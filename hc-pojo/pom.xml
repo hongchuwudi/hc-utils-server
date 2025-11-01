@@ -21,18 +21,23 @@
 
     <!-- 依赖声明 -->
     <dependencies>
+        <!-- =================模块自身依赖================= -->
         <dependency>
             <groupId>com.hongchu</groupId>
             <artifactId>hc-pojo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.hongchu</groupId>
+            <artifactId>hc-common</artifactId>
+        </dependency>
 
+        <!-- ===================其他依赖=================== -->
         <!-- Lombok：自动生成getter/setter/toString等 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope> <!-- 提供期依赖 -->
         </dependency>
-
         <!-- 数据验证 -->
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -43,7 +48,6 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
-
         <!-- JSON序列化注解 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -54,7 +58,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
-
         <!-- 二维码生成 -->
         <dependency>
             <groupId>com.google.zxing</groupId>

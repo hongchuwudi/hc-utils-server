@@ -37,21 +37,29 @@ public class Result<T> implements Serializable {
         return result;
     }
     
-    // 失败响应
+    // 失败响应 - 失败响应-返回错误码和错误信息
     public static <T> Result<T> fail(Integer code, String message) {
         Result<T> result = new Result<>();
         result.setCode(code);
         result.setMessage(message);
         return result;
     }
-    
+
+    // 失败响应-只返回异常信息
+    public static <T> Result<T> fail( String message) {
+        Result<T> result = new Result<>();
+        result.setCode(666);
+        result.setMessage(message);
+        return result;
+    }
+    //  失败响应 - 只返回错误码
     public static <T> Result<T> fail(ResultCode resultCode) {
         Result<T> result = new Result<>();
         result.setCode(resultCode.getCode());
         result.setMessage(resultCode.getMessage());
         return result;
     }
-    
+
     // 链式调用支持
     public Result<T> code(Integer code) {
         this.code = code;

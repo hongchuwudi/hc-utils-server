@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hongchu.hcutils.mapper.UserMapper">
+
+    <!-- 更新用户信息 -->
+    <update id="myUpdateUserById" parameterType="com.hongchu.pojo.entity.User">
+        UPDATE users
+        <set>
+            <if test="nickname != null and nickname != ''">nickname  = #{nickname},</if>
+            <if test="email    != null and email    != ''">email     = #{email},</if>
+            <if test="phone    != null and phone    != ''">phone     = #{phone},</if>
+            <if test="avatar   != null and avatar   != ''">avatar    = #{avatar},</if>
+            <if test="birthday != null">                     birthday  = #{birthday},</if>
+            <if test="gender   != null">                     gender    = #{gender},</if>
+            <if test="bio      != null and bio      != ''">bio       = #{bio},</if>
+            <if test="isVip    != null">                     is_vip    = #{isVip},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

@@ -36,8 +36,8 @@ public class ApiCallLogAspect {
     // 自定义注解来保证方法调用时添加日志-无侵入式的调用
     @Around("@annotation(apiCallLogAnnotation)")
     public Object aroundApiCall(ProceedingJoinPoint joinPoint, ApiCallLogAnnotation apiCallLogAnnotation) throws Throwable {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature(); // 获取方法签名
+        Method method = signature.getMethod(); // 获取方法
 
         ApiCallLog apiCallLog = new ApiCallLog();           // 创建API调用日志对象
         apiCallLog.setStartTime(LocalDateTime.now());       // 设置开始时间
@@ -83,6 +83,7 @@ public class ApiCallLogAspect {
     // 设置请求信息
     private void setRequestInfo(ApiCallLog apiCallLog, Object[] methodArgs, Method method) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        // 获取请求信息 如果存在 则设置
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
             apiCallLog.setUrl(request.getRequestURL().toString());
@@ -119,6 +120,7 @@ public class ApiCallLogAspect {
                             .append(", ");
                 }
             }
+            // 去掉最后一个逗号和空格
             if (!params.isEmpty()) {
                 String requestBody = params.substring(0, params.length() - 2);
                 apiCallLog.setRequestBody(requestBody);
@@ -126,6 +128,7 @@ public class ApiCallLogAspect {
         }
     }
 
+    // 获取客户端IP
     private String getClientIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
         if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
@@ -134,6 +137,7 @@ public class ApiCallLogAspect {
         return request.getRemoteAddr();
     }
 
+    // 异步保存日志
     private void saveLogAsync(ApiCallLog apiCallLog) {
         CompletableFuture.runAsync(() -> {
             try {

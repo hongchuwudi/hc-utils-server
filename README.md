@@ -12,7 +12,7 @@
 目前只有音乐和视频解析两大部分,后续将会陆续更新其他服务例如全网动漫高清观看等
 
 #### 前端部分 
-前端部分采用vue3 + pinia + tailwindcss + ant部分组件 + electron等技术,项目开源于hongchuwudi/hc-utils,这里不在过多介绍。
+前端部分采用vue3 + pinia + tailwindcss + ant部分组件 + electron等技术,项目开源于`hongchuwudi/hc-utils`,这里不在过多介绍。
 
 #### 音乐模块核心特性
 
@@ -27,8 +27,8 @@
 #### 系统架构与技术栈
 
 **后端技术栈**
-- **框架**: Spring Boot 3.x, Spring Framework
-- **数据持久层**: MyBatis, MySQL
+- **框架**: Spring Boot 3.x, Spring Framework,spring MVC,
+- **数据持久层**: MyBatis + mybatis-plus, MySQL
 - **HTTP客户端**: Spring WebClient (响应式 & 阻塞)
 - **架构模式**: 策略模式、面向切面编程(AOP)
 - **日志**: SLF4J + Logback
@@ -55,7 +55,7 @@ git clone https://github.com/hongchuwudi/hc-utils-server.git
 - 在 `src/main/resources/application.yml` 中配置您的数据源。
 
 **3. 配置第三方API密钥**
-在 `application.yml`同级目录中创建application-proApiUrl.yml,application-prod.yml和 application-dev.yml 中填入您从各音乐平台申请的API密钥与端点URL。
+在 `application.yml`同级目录中创建`application-proApiUrl.yml`,`application-prod.yml`和 `application-dev.yml` 中填入您从各音乐平台申请的API密钥与端点URL。
  1. application-proApiUrl.yml
 ```yaml
 # application-proApiUrl.yml 其中的url和秘钥因为某种原因无法公开,但可以联系作者qq2772167017获取
