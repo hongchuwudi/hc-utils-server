@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hc-utils
+    name: HC-utils
   profiles:
     active: dev
     include: proApiUrl
@@ -9,22 +9,11 @@ spring:
   sql:
     init:
       mode: never
-      dependency:
-        enabled: false
 
 server:
   port: 16666
 
-app:
-  name: hc-utils
-  version: 1.0.0
-  proxy:
-    timeout: 5000
-    max-connections: 500
-  debug: false
-  cache-enabled: false
-
-# MyBatis-Plus 公共配置 - 不指定log-impl，让各环境自己配置
+# MyBatis-Plus 公共配置
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   type-aliases-package: com.hongchu.pojo.entity
@@ -40,3 +29,4 @@ mybatis-plus:
     cache-enabled: true
     lazy-loading-enabled: true
     multiple-result-sets-enabled: true
+
