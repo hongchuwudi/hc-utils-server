@@ -21,5 +21,6 @@ public class MusicUrlConfig {
     public static class UrlInfo {
         private String url;         // 请求地址
         private String key;         // 请求参数
+        private String name;        // 接口名称
     }
 }

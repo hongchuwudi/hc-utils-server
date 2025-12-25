@@ -38,22 +38,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  <!-- 源码编码 -->
 
         <!-- 2.第三方依赖版本管理 -->
-        <mysql.connector.version>8.0.33</mysql.connector.version> <!-- MySQL驱动版本 -->
-        <lombok.version>1.18.30</lombok.version>                  <!-- Lombok工具版本 -->
-        <json.version>20231013</json.version>                     <!-- JSON处理库版本 -->
-        <qrcode.version>3.5.1</qrcode.version>                    <!-- 二维码生成模块 -->
-        <mybatis-plus.version>3.5.5</mybatis-plus.version>        <!-- MyBatis-Plus版本 -->
-        <mybatis.version>3.0.4</mybatis.version>                  <!-- MyBatis版本 -->
-        <pageHelper.v>2.1.0</pageHelper.v>                        <!-- MyBatis分页插件版本 -->
-        <jjwt.version>0.9.1</jjwt.version>                        <!-- JWT工具版本 -->
-        <aliyun.oss.version>3.17.4</aliyun.oss.version>           <!-- 阿里云oss -->
+        <mysql.connector.v>8.0.33</mysql.connector.v>               <!-- MySQL驱动版本 -->
+        <lombok.v>1.18.30</lombok.v>                                <!-- Lombok工具版本 -->
+        <json.v>20231013</json.v>                                   <!-- JSON处理库版本 -->
+        <qrcode.v>3.5.1</qrcode.v>                                  <!-- 二维码生成模块 -->
+        <mybatis-plus.v>3.4.3</mybatis-plus.v>                      <!-- MyBatis-Plus版本 -->
+        <mybatis.v>3.0.4</mybatis.v>                                <!-- MyBatis版本 -->
+        <pageHelper.v>2.1.0</pageHelper.v>                          <!-- MyBatis分页插件版本 -->
+        <jjwt.v>0.9.1</jjwt.v>                                      <!-- JWT工具版本 -->
+        <aliyun.oss.v>3.17.4</aliyun.oss.v>                         <!-- 阿里云oss -->
+        <sd.redis.v>3.2.8</sd.redis.v>                              <!-- spring-data-redis版本 -->
 
         <!-- 3.内部模块版本管理 -->
-        <hc-common.version>0.0.1-SNAPSHOT</hc-common.version>   <!-- 通用模块版本 -->
-        <hc-pojo.version>0.0.1-SNAPSHOT</hc-pojo.version>       <!-- 实体模块版本 -->
-        <hc-service.version>0.0.1-SNAPSHOT</hc-service.version> <!-- 服务模块版本 -->
-        <hc-proxy.version>0.0.1-SNAPSHOT</hc-proxy.version>     <!-- 代理模块版本 -->
-        <hc-app.version>0.0.1-SNAPSHOT</hc-app.version>         <!-- app集成模块版本 -->
+        <hc-common.v>0.0.1-SNAPSHOT</hc-common.v>                   <!-- 通用模块版本 -->
+        <hc-pojo.v>0.0.1-SNAPSHOT</hc-pojo.v>                       <!-- 实体模块版本 -->
+        <hc-service.v>0.0.1-SNAPSHOT</hc-service.v>                 <!-- 服务模块版本 -->
+        <hc-proxy.v>0.0.1-SNAPSHOT</hc-proxy.v>                     <!-- 代理模块版本 -->
+        <hc-app.v>0.0.1-SNAPSHOT</hc-app.v>                         <!-- app集成模块版本 -->
     </properties>
 
     <!-- 六. 依赖管理：统一管理所有依赖的版本，子模块引用时无需指定版本 -->
@@ -64,38 +65,41 @@
             <dependency>
                 <groupId>com.hongchu</groupId>          <!-- 组织ID -->
                 <artifactId>hc-common</artifactId>      <!-- 通用工具模块 -->
-                <version>${hc-common.version}</version> <!-- 使用属性中定义的版本 -->
+                <version>${hc-common.v}</version> <!-- 使用属性中定义的版本 -->
             </dependency>
             <!-- 实体类模块 -->
             <dependency>
                 <groupId>com.hongchu</groupId>          <!-- 组织ID -->
                 <artifactId>hc-pojo</artifactId>        <!-- 实体类模块 -->
-                <version>${hc-pojo.version}</version>   <!-- 使用属性中定义的版本 -->
+                <version>${hc-pojo.v}</version>   <!-- 使用属性中定义的版本 -->
             </dependency>
             <!-- 自研业务模块 -->
             <dependency>
                 <groupId>com.hongchu</groupId>          <!-- 组织ID -->
                 <artifactId>hc-service</artifactId>     <!-- 业务服务模块 -->
-                <version>${hc-service.version}</version><!-- 使用属性中定义的版本 -->
+                <version>${hc-service.v}</version><!-- 使用属性中定义的版本 -->
             </dependency>
             <!-- 代理业务模块 -->
             <dependency>
                 <groupId>com.hongchu</groupId>          <!-- 组织ID -->
                 <artifactId>hc-proxy</artifactId>       <!-- 代理模块 -->
-                <version>${hc-proxy.version}</version>  <!-- 使用属性中定义的版本 -->
+                <version>${hc-proxy.v}</version>  <!-- 使用属性中定义的版本 -->
             </dependency>
             <!-- 软件启动模块 -->
             <dependency>
                 <groupId>com.hongchu</groupId>          <!-- 组织ID -->
                 <artifactId>hc-app</artifactId>         <!-- 代理模块 -->
-                <version>${hc-app.version}</version>    <!-- 使用属性中定义的版本 -->
+                <version>${hc-app.v}</version>    <!-- 使用属性中定义的版本 -->
             </dependency>
 
             <!-- ========== spring依赖管理 ========== -->
-            <dependency>                                            <!-- Springboot依赖 -->
-                <groupId>org.springframework.boot</groupId>         <!-- Spring Boot组织ID -->
-                <artifactId>spring-boot-starter-parent</artifactId> <!-- Spring Boot启动器父项目 -->
-                <version>3.2.8</version>                            <!-- Spring Boot版本 -->
+            <!-- 导入Spring Boot的依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.2.8</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- ============ 数据库相关 ============ -->
@@ -103,26 +107,32 @@
             <dependency>
                 <groupId>com.mysql</groupId>                    <!-- MySQL组织 -->
                 <artifactId>mysql-connector-j</artifactId>      <!-- MySQL JDBC驱动 -->
-                <version>${mysql.connector.version}</version>   <!-- 版本号 -->
+                <version>${mysql.connector.v}</version>   <!-- 版本号 -->
                 <scope>runtime</scope>                          <!-- 作用域：运行时需要 -->
             </dependency>
             <!-- MyBatis  -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
+                <version>${mybatis.v}</version>
             </dependency>
             <!-- MyBatis Plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>                     <!-- MyBatis Plus -->
                 <artifactId>mybatis-plus-annotation</artifactId>    <!-- MyBatis注解 -->
-                <version>${mybatis-plus.version}</version>          <!-- 版本号 -->
+                <version>${mybatis-plus.v}</version>          <!-- 版本号 -->
             </dependency>
             <!-- MyBatis Plus启动器 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
+                <version>${mybatis-plus.v}</version>
+            </dependency>
+            <!-- redis 依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${sd.redis.v}</version>
             </dependency>
 
             <!-- ============ pojo数据相关 ============ -->
@@ -130,7 +140,7 @@
             <dependency>
                 <groupId>org.json</groupId>                     <!-- JSON组织 -->
                 <artifactId>json</artifactId>                   <!-- JSON处理库 -->
-                <version>${json.version}</version>              <!-- 版本号 -->
+                <version>${json.v}</version>              <!-- 版本号 -->
             </dependency>
             <!-- 数据验证 -->
             <dependency>
@@ -150,12 +160,15 @@
                 <version>2.17.0</version>                       <!-- 版本号 -->
             </dependency>
 
+            <!-- ============ 测试相关依赖 ============ -->
+
+
             <!-- ============ 其他第三方 ============ -->
             <!-- lombok开发工具包 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>    <!-- Lombok组织 -->
                 <artifactId>lombok</artifactId>         <!-- 代码生成工具 -->
-                <version>${lombok.version}</version>    <!-- 版本号 -->
+                <version>${lombok.v}</version>    <!-- 版本号 -->
                 <optional>true</optional>               <!-- 可选依赖，不会传递 -->
             </dependency>
             <!-- 分页插件PageHelper -->
@@ -168,24 +181,24 @@
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
+                <version>${jjwt.v}</version>
             </dependency>
             <!-- 二维码生成 -->
             <dependency>
                 <groupId>com.google.zxing</groupId>
                 <artifactId>core</artifactId>
-                <version>${qrcode.version}</version>
+                <version>${qrcode.v}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.zxing</groupId>
                 <artifactId>javase</artifactId>
-                <version>${qrcode.version}</version>
+                <version>${qrcode.v}</version>
             </dependency>
             <!-- 阿里云OSS -->
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${aliyun.oss.version}</version>
+                <version>${aliyun.oss.v}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -208,7 +221,7 @@
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version> <!-- Lombok注解处理器 -->
+                                <version>${lombok.v}</version> <!-- Lombok注解处理器 -->
                             </path>
                         </annotationProcessorPaths>
                     </configuration>

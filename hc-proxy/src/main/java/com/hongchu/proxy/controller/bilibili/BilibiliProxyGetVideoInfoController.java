@@ -36,11 +36,11 @@ public class BilibiliProxyGetVideoInfoController {
             logResponse = false,
             logException = true
     )
-    public Result<BilibiliVideoInfo> getVideoInfo(@PathVariable String bvid) {
+    public Result<BilibiliVideoInfo.VideoData> getVideoInfo(@PathVariable String bvid) {
         log.info("代理请求B站视频信息, bvid: {}", bvid);
         try {
             BilibiliVideoInfo videoInfo = bilibiliProxyService.getVideoInfoByBvid(bvid);
-            return Result.success(videoInfo);
+            return Result.success(videoInfo.getData());
         } catch (Exception e) {
             log.error("代理获取B站视频信息失败, bvid: {}", bvid, e);
             return Result.fail(500, "获取视频信息失败: " + e.getMessage());

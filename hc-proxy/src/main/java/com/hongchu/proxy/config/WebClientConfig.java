@@ -21,13 +21,14 @@ public class WebClientConfig {
     @Bean
     public WebClient webClient() {
         HttpClient httpClient = HttpClient.create()
-                .responseTimeout(Duration.ofSeconds(5))  // 响应超时5秒
+                .responseTimeout(Duration.ofSeconds(10))  // 响应超时5秒
                 .followRedirect(true);  // 跟随重定向
 
         return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
-                .defaultHeader("User-Agent", 
+                .defaultHeader("User-Agent",
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
                 .build();
     }
+
 }

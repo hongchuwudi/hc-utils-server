@@ -29,5 +29,4 @@ public class EmailController {
         emailService.sendEmailVerifyCode(email, type);
         return Result.success("发送成功");
     }
-
 }

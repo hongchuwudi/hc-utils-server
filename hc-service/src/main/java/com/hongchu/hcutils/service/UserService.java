@@ -1,9 +1,11 @@
 package com.hongchu.hcutils.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongchu.pojo.dto.UserDTO;
+import com.hongchu.pojo.entity.User;
 import com.hongchu.pojo.vo.UserInfoVO;
 
-public interface UserService {
+public interface UserService extends IService<User> {
     // 获取用户信息
     UserInfoVO getUserInfoByNick(String nickname);
     // 获取用户信息

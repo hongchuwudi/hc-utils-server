@@ -1,14 +1,28 @@
 spring:
   application:
     name: HC-utils
+  # Spring 配置
   profiles:
-    active: dev
-    include: proApiUrl
+    active: dev         # 选择环境(dev开发 test测试环境)
+    include: proApiUrl  # 引入别的配置文件
+  # Jackson 配置
   jackson:
     property-naming-strategy: SNAKE_CASE
+  # MyBatis-Plus 配置
   sql:
     init:
       mode: never
+  # Redis配置
+  data:
+    redis:
+      database: 0
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
 
 server:
   port: 16666
@@ -29,4 +43,3 @@ mybatis-plus:
     cache-enabled: true
     lazy-loading-enabled: true
     multiple-result-sets-enabled: true
-

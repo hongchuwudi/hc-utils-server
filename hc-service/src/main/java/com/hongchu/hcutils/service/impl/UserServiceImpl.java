@@ -93,8 +93,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             loginType = "用户名";
         }
         // 2.4 参数格式错误
-        else
-            throw new BusinessException("登录参数格式错误，请输入正确的手机号、邮箱或用户名");
+        else throw new BusinessException("登录参数格式错误，请输入正确的手机号、邮箱或用户名");
 
         // 3.检查用户是否存在
         if (user == null)
@@ -173,7 +172,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 4. 检查用户是否已存在
-        Long count = lambdaQuery().eq(User::getEmail, email).count();
+        Long count = Long.valueOf(lambdaQuery().eq(User::getEmail, email).count());
         if (count > 0) throw new BusinessException(ErrorMessageConstants.ERROR_EMAIL_ALREADY_EXISTS);
 
         // 5.生成基本信息,保存密码哈希

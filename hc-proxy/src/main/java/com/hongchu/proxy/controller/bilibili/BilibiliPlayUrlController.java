@@ -40,18 +40,18 @@ public class BilibiliPlayUrlController {
             logResponse = false,
             logException = true
     )
-    public Result<BilibiliPlayUrlInfo> getPlayUrlProxy(
+    public Result<BilibiliPlayUrlInfo.PlayUrlData> getPlayUrlProxy(
             @Valid PlayUrlRequest request,
             @RequestHeader("SESSDATA") String sessData) {
-        log.info("代理获取B站视频流地址, bvid: {}, avid: {}, cid: {}, qn:{}, fnval:{}, fourk:{}",
+        log.info("代理获取B站视频流地址, bvid: {}, avid: {}, cid: {}, qn:{}, fnval:{}, fourk:{},fnver:{}",
                 request.getBvid(), request.getAvid(), request.getCid(),
-                request.getQn(), request.getFnval(), request.getFourk());
+                request.getQn(), request.getFnval(), request.getFourk(),request.getFnver());
         try {
             // 获取视频流地址
             BilibiliPlayUrlInfo playUrlInfo = bilibiliPlayUrlService.getPlayUrl(request, sessData);
 
             // 返回结果
-            return Result.success(playUrlInfo);
+            return Result.success(playUrlInfo.getData());
         } catch (Exception e) {
             log.error("代理获取视频流地址失败", e);
             return Result.fail(500, "获取视频流地址失败: " + e.getMessage());

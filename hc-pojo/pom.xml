@@ -24,10 +24,6 @@
         <!-- =================模块自身依赖================= -->
         <dependency>
             <groupId>com.hongchu</groupId>
-            <artifactId>hc-pojo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hongchu</groupId>
             <artifactId>hc-common</artifactId>
         </dependency>
 

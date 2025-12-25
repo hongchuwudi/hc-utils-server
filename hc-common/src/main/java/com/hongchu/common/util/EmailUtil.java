@@ -28,7 +28,6 @@ public class EmailUtil {
         return email.matches("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
     }
 
-
     /**
      * 发送简单文本邮件
      */
